@@ -11,5 +11,10 @@ Create a servieWorker and mainifest.json
 Pass all checks in Google lighthouse Audit
 
 It can be install as Desktop application and mobile application.
-
+##Online
 ![](screenshot.png)
+
+##Offline
+![](offline.png)
+
+
