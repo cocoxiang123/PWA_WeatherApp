@@ -1,7 +1,6 @@
 const CACHE_NAME = "version-1";
 const urlsToCache = ["index.html", "offline.html"];
 
-const self = this;
 //Install SW
 self.addEventListener("install", (e) => {
   e.waitUntil(
@@ -34,4 +33,25 @@ self.addEventListener("active", (e) => {
       )
     )
   );
+});
+
+//install banner
+const fireAddToHomeScreenImpression = (event) => {
+  fireTracking("Add to homescreen shown");
+  //will not work for chrome, untill fixed
+  event.userChoice.then((choiceResult) => {
+    fireTracking(`User clicked ${choiceResult}`);
+  });
+
+  //This is to prevent `beforeinstallprompt` event that triggers again on `Add` or `Cancel` click
+  self.removeEventListener(
+    "beforeinstallprompt",
+    fireAddToHomeScreenImpression
+  );
+};
+self.addEventListener("beforeinstallprompt", fireAddToHomeScreenImpression);
+
+//Track web app install by user
+self.addEventListener("appinstalled", (event) => {
+  fireTracking("PWA app installed by user!!! Hurray");
 });
