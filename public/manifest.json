@@ -1,6 +1,7 @@
 {
   "short_name": "Weather App",
   "name": "Weather App PWA",
+  "description": "WeatherApp – Check up weather all around the world.",
   "icons": [
     {
       "src": "/images/logo.png",

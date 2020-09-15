@@ -1,6 +1,7 @@
 const CACHE_NAME = "version-1";
 const urlsToCache = ["index.html", "offline.html"];
 
+let deferredPrompt;
 //Install SW
 self.addEventListener("install", (e) => {
   e.waitUntil(
@@ -36,22 +37,29 @@ self.addEventListener("active", (e) => {
 });
 
 //install banner
-const fireAddToHomeScreenImpression = (event) => {
-  fireTracking("Add to homescreen shown");
-  //will not work for chrome, untill fixed
-  event.userChoice.then((choiceResult) => {
-    fireTracking(`User clicked ${choiceResult}`);
+window.addEventListener("beforeinstallprompt", (e) => {
+  // Prevent the mini-infobar from appearing on mobile
+  e.preventDefault();
+  // Stash the event so it can be triggered later.
+  deferredPrompt = e;
+  // Update UI notify the user they can install the PWA
+  showInstallPromotion();
+});
+buttonInstall.addEventListener("click", (e) => {
+  // Hide the app provided install promotion
+  hideMyInstallPromotion();
+  // Show the install prompt
+  deferredPrompt.prompt();
+  // Wait for the user to respond to the prompt
+  deferredPrompt.userChoice.then((choiceResult) => {
+    if (choiceResult.outcome === "accepted") {
+      console.log("User accepted the install prompt");
+    } else {
+      console.log("User dismissed the install prompt");
+    }
   });
-
-  //This is to prevent `beforeinstallprompt` event that triggers again on `Add` or `Cancel` click
-  self.removeEventListener(
-    "beforeinstallprompt",
-    fireAddToHomeScreenImpression
-  );
-};
-self.addEventListener("beforeinstallprompt", fireAddToHomeScreenImpression);
-
-//Track web app install by user
-self.addEventListener("appinstalled", (event) => {
-  fireTracking("PWA app installed by user!!! Hurray");
+});
+window.addEventListener("appinstalled", (evt) => {
+  // Log install to analytics
+  console.log("INSTALL: Success");
 });
