@@ -1,9 +1,9 @@
-#Progressive Web Application
+# Progressive Web Application
 
 link :
 https://coco-pwa-weatherapp.netlify.app/
 
-##Introduction
+## Introduction
 React application, Weather API
 
 Create a servieWorker and mainifest.json
@@ -11,10 +11,10 @@ Create a servieWorker and mainifest.json
 Pass all checks in Google lighthouse Audit
 
 It can be install as Desktop application and mobile application.
-##Online
+### Online
 ![](screenshot.png)
 
-##Offline
+### Offline
 ![](offline.png)
 
 
