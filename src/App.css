@@ -33,6 +33,7 @@ body,
   padding: 0.5rem 1rem;
   border: 0;
   text-transform: uppercase;
+  cursor: pointer;
 }
 .add-button:focus {
   outline: 0;
