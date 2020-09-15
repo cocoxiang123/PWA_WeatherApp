@@ -6,6 +6,7 @@ body,
   color: #1e2432;
   height: 100%;
   margin: 0;
+  overflow: hidden;
 }
 
 .main-container {
