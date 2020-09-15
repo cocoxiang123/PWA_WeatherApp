@@ -14,9 +14,11 @@ function App() {
   };
   return (
     <div className="main-container">
-      <button className="add-button" id="add-button">
-        Add to home screen
-      </button>
+      <div className="btn-container">
+        <button className="add-button" id="add-button">
+          Add to home screen
+        </button>
+      </div>
       <input
         type="text"
         className="search"
