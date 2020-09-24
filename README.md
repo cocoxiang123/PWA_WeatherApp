@@ -6,7 +6,7 @@ https://coco-pwa-weatherapp.netlify.app/
 ## Introduction
 React application, Weather API
 
-Create a servieWorker and mainifest.json
+Create a serviceWorker and manifest.json
 
 Pass all checks in Google lighthouse Audit
 
